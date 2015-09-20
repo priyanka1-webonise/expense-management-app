@@ -1,0 +1,7 @@
+<%= form_for @expense do |expense| %>
+    <%= expense.text_field :description, placeholder: 'Description' %>
+    <%= expense.text_field :amount, placeholder: 'Amount' %>
+    <%= expense.select :paid_by, options_from_collection_for_select(@users, "id", "email"), placeholder: 'Piad By'  %>
+    <%= expense.hidden_field :group_id, id: "group_id" %>
+    <%= expense.submit "Add" %>
+<% end %>

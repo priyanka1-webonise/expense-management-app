@@ -1,0 +1,9 @@
+<%= form_tag('/groups/create_member', class: 'form-horizontal') do %>
+<div class="form-group">
+  <input type="text" id='addEmail' name="email[]" tabindex="1" placeholder="Email Address" class="form-control"/>
+  <%= hidden_field_tag :group_id, id: "group_id" %>
+</div>
+<%= submit_tag "ADD" %>
+<% end %>
+
+

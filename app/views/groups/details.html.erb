@@ -1,0 +1,49 @@
+<%= link_to "Add New Expense", new_expense_path, id: "AddGroupExpense", remote: true, rel: @group.id %>
+<%= link_to "Add Member", add_member_group_path(@group.id), id: "addNewMember", remote: true %>
+<div class="expenseForm">
+</div>
+
+<h4><%= @group.name%></h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Item</th>
+      <th>Amount</th>
+      <th>Paid by</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @expenses.each do |expense| %>
+    <tr>
+      <td><%= expense.created_at.strftime('%m/%d/%Y')%></td>
+      <td><%= expense.description%></td>
+      <td><%= expense.amount%></td>
+      <td><%= User.find_by_id(expense.paid_by).name%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  <h5><%= current_user.name %> report:</h5>
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Member</th>
+      <% @all_members.each do |member| %>
+        <th><%= member.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @all_members.each do |member| %>
+    <tr>
+      <td><%= member.name %></td>
+      	<% all_members = reject_self(@all_members, member) %>	
+		<% @all_members.each do |contibuter| %>
+		  <% amt = contibuter.my_share_details(@group, member) %>
+		  <td><%=  amt > 0 ? 'Pay : ' : 'Get : '%><%= amt.abs %></td>
+		<% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

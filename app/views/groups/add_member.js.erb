@@ -1,0 +1,5 @@
+$(".expenseForm").html("<%= j(render partial: 'add_new_member') %>")
+var email_list = <%=raw @user_list %>
+$("#addEmail").tokenInput(email_list, { propertyToSearch: 'email' });
+$("#group_id").val('<%= @group.id %>');
+

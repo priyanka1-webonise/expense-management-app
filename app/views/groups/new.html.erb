@@ -1,0 +1,23 @@
+<%= form_tag('/groups', class: 'form-horizontal') do %>
+    <div class="form-group">
+        <%= text_field_tag :name %>
+    </div>
+    <div class="form-group">
+        <%= text_field_tag :description %>
+    </div>
+    <h2>Add Group Member</h2>
+    <div class="form-group">
+      <input type="text" id='email' name="email[]" tabindex="1" placeholder="Email Address" class="form-control"/>
+    </div>
+
+    <%= submit_tag 'Add', class: "btn btn-primary" %>
+<% end %>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+            var email_list = <%=raw @user_list %>
+            console.log(email_list)
+            $("#email").tokenInput(email_list, { propertyToSearch: 'email' });
+
+    })
+</script>

@@ -1,0 +1,3 @@
+var group_id = $("#AddGroupExpense").attr("rel");
+$(".expenseForm").html("<%= j(render partial: 'form') %>");
+$("#group_id").val(group_id);

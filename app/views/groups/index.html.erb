@@ -1,0 +1,19 @@
+<%= link_to "Add New Group",new_group_path %>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.created_at.strftime('%m/%d/%Y') %></td>
+        <td><%= link_to group.name, details_group_path(group) %></td>
+        <td><%= group.description %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

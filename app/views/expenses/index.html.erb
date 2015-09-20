@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>You Paid/Lent</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.created_at.strftime('%m/%d/%Y') %></td>
+        <td><%= link_to group.name, details_group_path(group) %></td>
+        <% balanse =  group.balanse(current_user) %>
+        <td><%=  balanse > 0 ? 'Will get : ' : 'you have to pay : '%><%= balanse.abs %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
