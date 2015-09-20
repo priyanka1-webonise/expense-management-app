@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919193718) do
+ActiveRecord::Schema.define(version: 20150920132945) do
 
   create_table "expenses", force: :cascade do |t|
     t.string   "description", limit: 255
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150919193718) do
     t.integer  "group_id",    limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4
   end
 
   add_index "expenses", ["group_id"], name: "index_expenses_on_group_id", using: :btree

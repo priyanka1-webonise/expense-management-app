@@ -16,8 +16,4 @@
 //= require turbolinks
 //= require_tree .
 
-$(".sideBar li a").click(function(){
-    alert("dscds");
-    $(".sideBar li").removeClass("active");
-    $(this).parent().addClass("active");
-});
+

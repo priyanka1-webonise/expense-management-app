@@ -1,19 +1,32 @@
+<%= link_to "Add New Expense", new_expense_path %>
+<h3>All Expenses</h3>
 <table class="table">
   <thead>
   <tr>
     <th>Date</th>
-    <th>Name</th>
-    <th>You Paid/Lent</th>
+    <th>Group Name</th>
+    <th>You Paid/will get</th>
   </tr>
   </thead>
   <tbody>
-  <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.created_at.strftime('%m/%d/%Y') %></td>
-        <td><%= link_to group.name, details_group_path(group) %></td>
-        <% balanse =  group.balanse(current_user) %>
-        <td><%=  balanse > 0 ? 'Will get : ' : 'you have to pay : '%><%= balanse.abs %></td>
-      </tr>
+  <% if @expenses.present? %>
+      <% @expenses.each do |expense| %>
+        <tr>
+          <td><%= expense.created_at.strftime('%m/%d/%Y') %></td>
+          <td>NA</td>
+          <td><%= paid_by(expense) %></td>
+        </tr>
+      <% end %>
+  <% end %>
+  <% if @groups.present? %>
+      <% @groups.each do |group| %>
+          <tr>
+            <td><%= group.created_at.strftime('%m/%d/%Y') %></td>
+            <td><%= link_to group.name, details_group_path(group) %></td>
+            <% balanse =  group.balanse(current_user) %>
+            <td><%=  balanse > 0 ? 'Will get : ' : 'you have to pay : '%><%= balanse.abs %></td>
+          </tr>
+      <% end %>
   <% end %>
   </tbody>
 </table>

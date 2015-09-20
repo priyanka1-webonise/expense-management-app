@@ -1,7 +1,32 @@
 <%= form_for @expense do |expense| %>
-    <%= expense.text_field :description, placeholder: 'Description' %>
-    <%= expense.text_field :amount, placeholder: 'Amount' %>
-    <%= expense.select :paid_by, options_from_collection_for_select(@users, "id", "email"), placeholder: 'Piad By'  %>
-    <%= expense.hidden_field :group_id, id: "group_id" %>
-    <%= expense.submit "Add" %>
+    <div class="form-group">
+        <%= expense.label :description, class: "control-label" %>
+        <%= expense.text_field :description, placeholder: 'Description', class: "control-label" %>
+    </div>
+    <div class="form-group">
+        <%= expense.label :amount, class: "control-label" %>
+        <%= expense.text_field :amount, placeholder: 'Amount', class: "control-label" %>
+    </div>
+    <div class="form-group">
+        <%= expense.label :paid_by, class: "control-label" %>
+        <%= expense.select :paid_by, options_from_collection_for_select(@users, "id", "email"), prompt: "Paid By" %>
+    </div>
+    <div class="form-group">
+        <%= expense.hidden_field :group_id, id: "group_id" %>
+        <%= expense.submit "Add", class: "btn btn-success" %>
+    </div>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    var expense_description = new LiveValidation('expense_description', {onlyOnSubmit: true } );
+    expense_description.add( Validate.Presence,{failureMessage: "Please add Description"});
+
+    var expense_amount = new LiveValidation('expense_amount', {onlyOnSubmit: true } );
+    expense_amount.add( Validate.Presence,{failureMessage: "Please add valid amount"});
+    expense_amount.add( Validate.Numericality,{failureMessage: "Please add valid number"});
+
+    var expense_paid_by = new LiveValidation('expense_paid_by', {onlyOnSubmit: true } );
+    expense_paid_by.add( Validate.Presence,{failureMessage: "Please add Paid by email"});
+  });
+</script>

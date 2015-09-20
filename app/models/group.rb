@@ -4,6 +4,10 @@ class Group < ActiveRecord::Base
   has_many :group_users
   has_many :expenses
 
+  # validations
+  validates :name, presence: true
+  validates :description, presence: true
+
   def share_amount
   	total_amount = self.expenses.inject(0){|sum, expense| sum +=expense.amount }
   	(total_amount.to_f / self.users.count)

@@ -9,18 +9,11 @@ Rails.application.routes.draw do
     delete "/logout" => "devise/sessions#destroy"
   end
 
-  resources :users, only: [:index] do
-    collection do
-      get :get_registered_users
-    end
-  end
-
   resources :expenses
   resources :groups do
     member do
       get :details
       get :add_member
-      # put :create_member
     end
     collection do
       post :create_member

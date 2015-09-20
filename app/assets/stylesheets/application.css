@@ -21,3 +21,39 @@
 .formHolder{
     margin-left: 60px;
 }
+.addMember{
+    margin-top: 10px;
+}
+
+/* css for live validation */
+.LV_validation_message{
+    font-color:red;
+    width: 407px;
+    margin: 5px;
+}
+
+.LV_invalid {
+    color:#a94442;
+}
+.LV_valid
+{
+    display: none;
+}
+.LV_valid_field,
+input.LV_valid_field:hover,
+input.LV_valid_field:active,
+textarea.LV_valid_field:hover,
+textarea.LV_valid_field:active {
+    border: 1px solid #00CC00;
+}
+
+.LV_invalid_field,
+input.LV_invalid_field:hover,
+input.LV_invalid_field:active,
+textarea.LV_invalid_field:hover,
+textarea.LV_invalid_field:active {
+    border: 1px solid #a94442;
+}
+.addGroup{
+    margin-top: 20px;
+}

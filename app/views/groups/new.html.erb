@@ -1,23 +1,33 @@
-<%= form_tag('/groups', class: 'form-horizontal') do %>
+<%= form_tag('/groups') do %>
     <div class="form-group">
-        <%= text_field_tag :name %>
+        <label class="control-label">Name</label>
+        <%= text_field_tag :name, "", placeholder: "Name", id: "group_name" %>
     </div>
     <div class="form-group">
-        <%= text_field_tag :description %>
+        <label class="control-label">Description</label>
+        <%= text_field_tag :description, "", placeholder: "Description", id: "group_description"  %>
     </div>
-    <h2>Add Group Member</h2>
     <div class="form-group">
-      <input type="text" id='email' name="email[]" tabindex="1" placeholder="Email Address" class="form-control"/>
+        <label class="control-label">Group Members</label>
+        <input type="text" id='email' name="email[]" tabindex="1" placeholder="Email Address" class="form-control"/>
     </div>
-
-    <%= submit_tag 'Add', class: "btn btn-primary" %>
+    <div class="form-group">
+        <%= submit_tag 'Add Group', class: "btn btn-success addGroup" %>
+    </div>
 <% end %>
 
 <script type="text/javascript">
     $(document).ready(function(){
-            var email_list = <%=raw @user_list %>
-            console.log(email_list)
-            $("#email").tokenInput(email_list, { propertyToSearch: 'email' });
+        var email_list = <%=raw @user_list %>
+        $("#email").tokenInput(email_list, { propertyToSearch: 'email' });
 
-    })
+        var group_name = new LiveValidation('group_name', {onlyOnSubmit: true } );
+        group_name.add( Validate.Presence,{failureMessage: "Please add emails of members"});
+
+        var group_description = new LiveValidation('group_description', {onlyOnSubmit: true } );
+        group_description.add( Validate.Presence,{failureMessage: "Please add emails of members"});
+
+        var email = new LiveValidation('email', {onlyOnSubmit: true } );
+        email.add( Validate.Presence,{failureMessage: "Please add emails of members"});
+    });
 </script>

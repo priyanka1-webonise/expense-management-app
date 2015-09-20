@@ -2,7 +2,6 @@
 <%= link_to "Add Member", add_member_group_path(@group.id), id: "addNewMember", remote: true %>
 <div class="expenseForm">
 </div>
-
 <h4><%= @group.name%></h4>
 <table class="table table-bordered">
   <thead>
@@ -38,7 +37,6 @@
   	<% @all_members.each do |member| %>
     <tr>
       <td><%= member.name %></td>
-      	<% all_members = reject_self(@all_members, member) %>	
 		<% @all_members.each do |contibuter| %>
 		  <% amt = contibuter.my_share_details(@group, member) %>
 		  <td><%=  amt > 0 ? 'Pay : ' : 'Get : '%><%= amt.abs %></td>

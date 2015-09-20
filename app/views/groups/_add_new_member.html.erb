@@ -3,7 +3,16 @@
   <input type="text" id='addEmail' name="email[]" tabindex="1" placeholder="Email Address" class="form-control"/>
   <%= hidden_field_tag :group_id, id: "group_id" %>
 </div>
-<%= submit_tag "ADD" %>
+<div class="form-group">
+    <%= submit_tag "Add Member", class: "btn btn-success addMember" %>
+</div>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var addEmail = new LiveValidation('addEmail', {onlyOnSubmit: true});
+        addEmail.add(Validate.Presence, {failureMessage: "Please add emails of members"});
+    });
+</script>
 
 
