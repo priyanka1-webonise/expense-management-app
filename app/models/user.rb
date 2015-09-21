@@ -7,9 +7,8 @@ class User < ActiveRecord::Base
   has_many :expenses
 
   # validations
-  # validates :name, presence: true
-  # validates :email, presence: true
-  
+  validates :name, presence: true
+
   def my_share_details(group, contibuter)
   	contributer_expense = group.paid_by_user(contibuter)/ group.users.count
   	my_expense = group.paid_by_user(self).to_f / group.users.count
