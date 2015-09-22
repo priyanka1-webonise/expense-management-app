@@ -10,14 +10,14 @@ class Group < ActiveRecord::Base
 
   def share_amount
   	total_amount = self.expenses.inject(0){|sum, expense| sum +=expense.amount }
-  	(total_amount.to_f / self.users.count)
+  	(total_amount.to_f / self.users.count).round
   end
 
   def paid_by_user(user)
-  	expenses_paid_by_user = self.expenses.where(paid_by: user.id).inject(0){|sum, expense| sum += expense.amount }
+  	self.expenses.where(paid_by: user.id).inject(0){|sum, expense| sum += expense.amount }
   end
 
   def balanse(user)
-    paid_by_user(user) - self.share_amount
+    (paid_by_user(user) - self.share_amount).round
   end
 end
