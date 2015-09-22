@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :group, only: [:details, :add_member]
+  before_filter :group, only: [:details, :add_member, :invite]
 
   def new
     @group = Group.new
@@ -39,6 +39,10 @@ class GroupsController < ApplicationController
       group.group_users.create(user_id: email.to_i)
     end
     redirect_to request.referer
+  end
+
+  def invite
+
   end
 
   private
