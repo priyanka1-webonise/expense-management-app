@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  devise_for :users
+  devise_for :users, controllers: { invitations: 'invitations' }
 
   devise_scope :user do
     root to: 'devise/sessions#new'
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       get :details
       get :add_member
+      get :invite
     end
     collection do
       post :create_member

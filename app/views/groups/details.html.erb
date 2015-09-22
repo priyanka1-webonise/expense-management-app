@@ -1,5 +1,6 @@
 <%= link_to "Add New Expense", new_expense_path, id: "AddGroupExpense", remote: true, rel: @group.id %>
 <%= link_to "Add Member", add_member_group_path(@group.id), id: "addNewMember", remote: true %>
+<%= link_to "Invite User", invite_group_path(@group.id), id: "inviteNewMember", remote: true %>
 <div class="expenseForm">
 </div>
 <h4><%= @group.name%></h4>

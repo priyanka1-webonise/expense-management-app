@@ -1,0 +1,26 @@
+<%= form_tag('/users/invitation',method: 'post') do %>
+    <div class="form-group">
+      <label class="control-label">Email</label>
+      <%= text_field_tag :user_email, "", placeholder: "Add users email you would like to invite", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Name</label>
+      <%= text_field_tag :user_name, "", placeholder: "Add users name you would like to invite", class: "form-control"  %>
+    </div>
+    <div class="form-group">
+      <%= hidden_field_tag :invite_group_id, @group.id %>
+      <%= submit_tag "ADD", class: "btn btn-success"  %>
+    </div>
+<% end %>
+
+<script>
+  $(document).ready(function(){
+      var user_email = new LiveValidation('user_email', {onlyOnSubmit: true } );
+      user_email.add( Validate.Presence,{failureMessage: "Please add valid email"});
+      user_email.add( Validate.Email,{failureMessage: "Please add valid email"});
+
+      var user_name = new LiveValidation('user_name', {onlyOnSubmit: true } );
+      user_name.add( Validate.Presence,{failureMessage: "Please add name"});
+
+  });
+</script>
